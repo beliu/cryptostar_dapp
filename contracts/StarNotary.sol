@@ -88,10 +88,14 @@ contract StarNotary is ERC721, ERC721Full {
             "One of the token owners must be the sender"
         );
 
+        // // Approve recipient for each token
+        // approve(owner2, _tokenId1);
+        // approve(owner1, _tokenId2);
+
         // Transfer token 1
-        _transferFrom(owner1, owner2, _tokenId1);
+        safeTransferFrom(owner1, owner2, _tokenId1);
         // Transfer token 2
-        _transferFrom(owner2, owner1, _tokenId2);
+        safeTransferFrom(owner2, owner1, _tokenId2);
     }
 
     // Implement Task 1 Transfer Stars

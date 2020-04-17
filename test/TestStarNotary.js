@@ -98,6 +98,10 @@ it('lets 2 users exchange stars', async() => {
     assert.equal(await instance.ownerOf(starId1), user1);
     assert.equal(await instance.ownerOf(starId2), user2);
 
+    // Approve the exchange of the stars
+    await instance.approve(user2, starId1, {from: user1});
+    await instance.approve(user1, starId2, {from: user2});
+    
     // Exchange the stars
     await instance.exchangeStars(starId1, starId2, {from: user1, to: user2});
     assert.equal(await instance.ownerOf(starId1), user2);
