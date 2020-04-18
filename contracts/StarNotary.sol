@@ -39,7 +39,7 @@ contract StarNotary is ERC721, ERC721Full {
     function putStarUpForSale(uint256 _tokenId, uint256 _price) public {
         require(
             ownerOf(_tokenId) == msg.sender,
-            "You can't sale the Star you don't owned"
+            "You can't sell the Star you don't own"
         );
         starsForSale[_tokenId] = _price;
     }
