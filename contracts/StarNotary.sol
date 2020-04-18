@@ -88,10 +88,6 @@ contract StarNotary is ERC721, ERC721Full {
             "One of the token owners must be the sender"
         );
 
-        // // Approve recipient for each token
-        // approve(owner2, _tokenId1);
-        // approve(owner1, _tokenId2);
-
         // Transfer token 1
         safeTransferFrom(owner1, owner2, _tokenId1);
         // Transfer token 2
@@ -102,5 +98,9 @@ contract StarNotary is ERC721, ERC721Full {
     function transferStar(address _to1, uint256 _tokenId) public {
         //1. Check if the sender is the ownerOf(_tokenId)
         //2. Use the transferFrom(from, to, tokenId); function to transfer the Star
+
+        address owner = ownerOf(_tokenId);
+        require(owner == msg.sender, 'Only the owner can transfer this token');
+        safeTransferFrom(owner, _to1, _tokenId);
     }
 }
